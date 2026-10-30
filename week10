@@ -1,0 +1,120 @@
+10a)TIME SERIES ANALYSIS USING R
+# Monthly sales data
+sales <- c(100, 120, 130, 150, 170, 180,
+           200, 210, 230, 250, 270, 290)
+
+# Create time series object
+sales_ts <- ts(sales,
+               start = c(2025, 1),
+               frequency = 12)
+
+# Display time series
+print(sales_ts)
+
+# Plot time series
+plot(sales_ts,
+     main = "Monthly Sales Time Series",
+     xlab = "Year",
+     ylab = "Sales",
+     type = "o")
+
+# Add linear regression trend
+time <- 1:length(sales)
+
+model <- lm(sales ~ time)
+
+# Display regression model
+print(summary(model))
+
+
+10b) NON-LINEAR LEAST SQUARES USING R
+# Sample data
+year <- 1:8
+population <- c(
+    110, 125, 145, 165,
+    190, 220, 250, 290
+)
+# Create data frame
+data <- data.frame(year, population)
+# Non-linear least squares model
+model <- nls(
+    population ~ a * exp(b * year),
+    data = data,
+    start = list(a = 100, b = 0.1)
+)
+# Display model
+summary(model)
+# Predicted values
+predicted <- predict(model)
+print(predicted)
+# ---------------------------------------
+# Plot original data
+plot(
+    year,
+    population,
+    main = "Non-Linear Least Squares Regression",
+    xlab = "Year",
+    ylab = "Population",
+    pch = 19
+)
+# Add nonlinear regression curvelines(
+    year,
+    predicted,
+    lwd = 2
+)
+# 8. Predict population for a new year 
+newdata <- data.frame(year = 10) 
+new_prediction <- predict( model, newdata = newdata )
+ 
+# Display prediction for year 10 
+print(new_prediction)
+
+10c) DECISION TREE USING R
+
+# =========================================
+# DECISION TREE USING R
+# =========================================
+
+# Load packages
+library(rpart)
+library(rpart.plot)
+
+
+# Create dataset
+data <- data.frame(
+  StudyHours = c(1, 2, 3, 4, 5, 6, 7, 8),
+  Result = c(
+    "Fail", "Fail", "Fail", "Fail",
+    "Pass", "Pass", "Pass", "Pass"
+  )
+)
+
+
+# Convert Result to factor
+data$Result <- as.factor(data$Result)
+
+
+# Display dataset
+print(data)
+
+
+# Build Decision Tree
+model <- rpart(
+  Result ~ StudyHours,
+  data = data,
+  method = "class"
+)
+
+
+# Display model
+print(model)
+
+
+# Draw Decision Tree
+rpart.plot(
+  model,
+  type = 3,
+  extra = 104,
+  fallen.leaves = TRUE,
+  main = "Decision Tree - Student Result"
+)
