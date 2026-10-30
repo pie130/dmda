@@ -1,0 +1,128 @@
+#Normal Distribution
+#DNORM
+x<-seq(20,80,by=1)
+y<-dnorm(x,mean=50,sd=10)
+png(file='dnorm.png')
+plot(x,y,
+     type="p",
+     pch=19,
+     col="blue",
+     main="Normal Density(dnorm)",
+     xlab="Marks",
+     ylab="Density"
+)
+model<-lm(y~x)
+abline(model,col="red",lwd=2)
+summary(model)
+dev.off()
+#PNORM
+x<-seq(20,80,1)
+y<-pnorm(x,mean=50,sd=10)
+png(file='pnorm.png')
+plot(x,y,
+     pch=19,
+     col="blue",
+     main="Cumulative probabailty(pnorm)",
+     xlab="Marks",
+     ylab="Probability"
+)
+model<-lm(y~x)
+abline(model,col="red",lwd=2)
+summary(model)
+dev.off()
+#QNORM
+p<-seq(0.01,0.99,0.05)
+x<-qnorm(p,mean=50,sd=10)
+png(file='qnorm.png')
+plot(p,x,
+     type="p",
+     pch=19,
+     col="blue",
+     main="Quantile Function(qnorm)",
+     xlab="Probability",
+     ylab="Marks"
+)
+model<-lm(x~p)
+abline(model,col="red",lwd=2)
+summary(model)
+dev.off()
+#Rnorm
+set.seed(100)
+y<-rnorm(50,mean=50,sd=10)
+x<-1:50
+png(file='rnorm.png')
+plot(x,y,
+     type="p",
+     pch=19,
+     col="blue",
+     main="Random Normal Data(rnorm)",
+     xlab="Observation",
+     ylab="Marks"
+)
+model<-lm(y~x)
+abline(model,col="red",lwd=2)
+summary(model)
+dev.off()
+
+
+#Binomial Distribution
+#Dbinom
+x<-0:10
+y<-dbinom(x,size=10,prob=0.2)
+#png(file='dbinom.png')
+plot(x,y,
+     pch=19,
+     col="blue",
+     main="Binomial Probability",
+     xlab="Successes",
+     ylab="Probability"
+)
+model<-lm(y~x)
+abline(model,col="red",lwd=2)
+summary(model)
+#dev.off()
+#PBinom
+x<-0:10
+y<-pbinom(x,size=10,prob=0.2)
+png(file='pbinom.png')
+plot(x,y,
+     pch=19,
+     col="blue",
+     main="Cumulative Binomial",
+     xlab="Successes",
+     ylab="Probability"
+)
+model<-lm(y~x)
+abline(model,col="red",lwd=2)
+summary(model)
+dev.off()
+#Qbinom
+p<-seq(0.1,0.9,0.1)
+x<-qbinom(p,size=10,prob=0.2)
+png(file='qbinom.png')
+plot(p,x,
+     pch=19,
+     col="blue",
+     main="Binomail Quantile",
+     xlab="Probability",
+     ylab="Successes"
+)
+model<-lm(x~p)
+abline(model,col="red",lwd=2)
+summary(model)
+dev.off()
+#Rbinom
+p<-seq(0.1,0.9,0.1)
+x<-rbinom(p,size=10,prob=0.2)
+png(file='rbinom.png')
+plot(p,x,
+     pch=19,
+     col="blue",
+     main="Random Binomail",
+     xlab="Probability",
+     ylab="Successes"
+)
+model<-lm(x~p)
+abline(model,col="red",lwd=2)
+summary(model)
+dev.off()
