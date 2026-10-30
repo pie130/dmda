@@ -1,0 +1,100 @@
+a)	χ² TEST — CHI-SQUARE TEST
+# ==========================================
+# CHI-SQUARE TEST
+# ==========================================
+# Step 1: Create data
+data <- matrix(c(6, 5, 4,
+                 4, 6, 5),
+               nrow = 2,
+               byrow = TRUE)
+# Step 2: Add names
+rownames(data) <- c("Male", "Female")
+colnames(data) <- c("AI",
+                    "Data Science",
+                    "Cyber Security")
+# Step 3: Display data
+print("Observed Frequencies:")
+print(data)
+# Step 4: Chi-square test
+result <- chisq.test(data)
+# Step 5: Display result
+print(result)
+# Step 6: Expected frequencies
+print("Expected Frequencies:")
+print(result$expected)
+# Step 7: Graph
+barplot(data,
+        beside = TRUE,
+        main = "Gender vs Course Preference",
+        xlab = "Course",
+        ylab = "Number of Students",
+        legend.text = TRUE)
+
+
+b)	t-TEST
+# ==========================================
+# PAIRED t-TEST
+# ==========================================
+# Step 1: Enter data
+before <- c(55, 60, 58, 62, 57,
+            59, 61, 56, 60, 58)
+after <- c(65, 68, 67, 70, 64,
+           66, 69, 63, 68, 65)
+# Step 2: Calculate means
+mean_before <- mean(before)
+mean_after <- mean(after)
+print("Mean before training:")
+print(mean_before)
+print("Mean after training:")
+print(mean_after)
+# Step 3: Paired t-test
+result <- t.test(before,
+                 after,
+                 paired = TRUE)
+print(result)
+# Step 4: Boxplot
+png(file="boxplot.png")
+boxplot(before, after,
+        names = c("Before", "After"),
+        main = "Marks Before and After Training",
+        xlab = "Training",
+        ylab = "Marks")
+dev.off()
+
+c)	F-TEST
+# ==========================================
+# F-TEST
+# ==========================================
+# Step 1: Enter data
+classA <- c(55, 60, 58, 62, 57,
+            59, 61, 56, 60, 58)
+classB <- c(45, 70, 50, 75, 40,
+            65, 55, 80, 48, 72)
+# Step 2: Calculate means
+mean_A <- mean(classA)
+mean_B <- mean(classB)
+print("Mean of Class A:")
+print(mean_A)
+print("Mean of Class B:")
+print(mean_B)
+# Step 3: Calculate variances
+variance_A <- var(classA)
+variance_B <- var(classB)
+print("Variance of Class A:")
+print(variance_A)
+print("Variance of Class B:")
+print(variance_B)
+# Step 4: F-test
+result <- var.test(classA, classB)
+print(result)
+# Step 5: Boxplot
+png(file="boxplot.png")
+boxplot(classA, classB,
+        names = c("Class A", "Class B"),
+        main = "Comparison of Variances",
+        xlab = "Class",
+        ylab = "Marks")
+dev.off()
+
+
+
