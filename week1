@@ -1,5 +1,31 @@
 @relation Student
 
+@attribute StudentID numeric
+@attribute Age numeric
+@attribute Gender {Male,Female}
+@attribute StudyHours numeric
+@attribute Attendance numeric
+@attribute Marks numeric
+@attribute Results {Pass,Fail}
+
+@data
+1,18,Male,2,75,45,Fail
+2,19,Female,4,85,65,Pass
+3,18,Male,3,80,55,Pass
+4,20,Female,7,90,70,Pass
+5,19,Male,5,95,?,Pass
+6,15,Female,2,60,40,Fail
+7,21,Male,6,98,85,Pass
+8,20,Female,1,50,30,Fail
+9,19,?,3,78,58,Pass
+10,18,Female,4,88,68,Pass
+
+
+
+
+
+@relation Student
+
 @attribute age{<30,30-40,>40}
 @attribute income{low,medium,high}
 @attribute student{yes,no}
