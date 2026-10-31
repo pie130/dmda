@@ -1,0 +1,82 @@
+
+linear
+
+# Step 1: Create sample data
+Hours <- c(1, 2, 3, 4, 5, 6)
+Marks <- c(35, 40, 50, 55, 65, 75)
+
+# Step 2: Create data frame
+student <- data.frame(Hours, Marks)
+
+# Display data
+print(student)
+
+# Step 3: Build Linear Regression Model
+model <- lm(Marks ~ Hours, data = student)
+
+# Step 4: Display summary
+summary(model)
+
+# Step 5: Display regression coefficients
+coef(model)
+
+# Step 6: Display predicted values
+predict(model)
+
+# Step 7: Draw scatter plot
+plot(
+  Hours,
+  Marks,
+  main = "Linear Regression",
+  xlab = "Study Hours",
+  ylab = "Marks",
+  pch = 19,
+  col = "blue"
+)
+
+# Step 8: Draw regression line
+abline(model, col = "red", lwd = 2)
+
+
+multiple
+
+# Step 1: Independent variables
+Experience <- c(1, 2, 3, 4, 5, 6)
+Education <- c(12, 12, 15, 15, 16, 18)
+
+# Step 2: Dependent variable
+Salary <- c(25000, 28000, 35000, 42000, 50000, 60000)
+
+# Step 3: Create data frame
+employee <- data.frame(Experience, Education, Salary)
+
+# Step 4: Display dataset
+print(employee)
+
+# Step 5: Build Multiple Regression Model
+model <- lm(Salary ~ Experience + Education, data = employee)
+
+# Step 6: Display summary
+summary(model)
+
+# Step 7: Display coefficients
+coef(model)
+
+# Step 8: Display predicted salary
+predict(model)
+
+# Step 9: Draw scatter plot
+plot(
+  employee$Experience,
+  employee$Salary,
+  main = "Experience vs Salary",
+  xlab = "Experience (Years)",
+  ylab = "Salary",
+  pch = 19,
+  col = "blue"
+)
+
+# Draw regression line
+abline(lm(Salary ~ Experience, data = employee),
+       col = "red",
+       lwd = 2)
