@@ -80,3 +80,36 @@ plot(
 abline(lm(Salary ~ Experience, data = employee),
        col = "red",
        lwd = 2)
+
+
+
+# Poisson Regression
+
+# Step 1: Create data
+hours <- c(1, 2, 3, 4, 5, 6, 7, 8)
+question <- c(2, 3, 4, 5, 8, 10, 13, 16)
+
+data <- data.frame(hours, question)
+print(data)
+
+# Step 2: Fit Poisson Regression Model
+model <- glm(question ~ hours,
+             family = poisson,
+             data = data)
+
+# Step 3: Display model
+summary(model)
+
+# Step 4: Predict
+predicted <- predict(model, type = "response")
+print(predicted)
+
+# Step 5: Plot actual observations
+plot(data$hours, data$question,
+     pch = 19,
+     xlab = "Study Hours",
+     ylab = "Question Answered",
+     main = "Poisson Regression")
+
+# Step 6: Add regression curve
+lines(data$hours, predicted, lwd = 2)
