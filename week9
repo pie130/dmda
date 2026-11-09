@@ -113,3 +113,85 @@ plot(data$hours, data$question,
 
 # Step 6: Add regression curve
 lines(data$hours, predicted, lwd = 2)
+
+
+
+
+
+
+# 1. Create dataset
+
+students <- data.frame(
+  studyHours = c(2, 3, 4, 5, 6, 7, 8),
+  pay = c(0, 0, 0, 1, 1, 1, 1)
+)
+
+# 2. Build logistic regression model
+
+model <- glm(
+  pay ~ studyHours,
+  data = students,
+  family = binomial
+)
+
+# 3. Display model results
+
+summary(model)
+
+# 4. Calculate probability
+
+students$probability <- predict(
+  model,
+  type = "response"
+)
+
+# 5. Convert probability into class
+
+students$prediction <- ifelse(
+  students$probability >= 0.5,
+  1,
+  0
+)
+
+# 6. Display results
+
+print(students)
+
+# 7. Plot actual observations
+
+plot(
+  students$studyHours,
+  students$pay,
+  pch = 19,
+  xlab = "Study Hours",
+  ylab = "Probability of Passing",
+  main = "Logistic Regression"
+)
+
+# 8. Draw logistic curve
+
+x <- seq(2, 8, length.out = 100)
+
+y <- predict(
+  model,
+  newdata = data.frame(studyHours = x),
+  type = "response"
+)
+
+lines(x, y, lwd = 2, col = "blue")
+
+# 9. Predict for a new student
+
+new_student <- data.frame(studyHours = 5)
+
+prob <- predict(
+  model,
+  newdata = new_student,
+  type = "response"
+)
+
+print(prob)
+
+# 10. Final classification
+
+ifelse(prob >= 0.5, "Pass", "Fail")
